@@ -7,9 +7,9 @@ webpack-stats.json
 npm-debug.log
 *.swp
 
-src/cert
+src/cert/
 
-*-compiled.js
-*-compiled.js.map
+*compiled.js
+*compiled.js.map
 api/mysql
 

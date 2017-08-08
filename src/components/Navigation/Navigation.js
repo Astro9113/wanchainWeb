@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getClientWidthFunc, getNavButtonFunc, changeLangFunc } from 'redux/modules/auth';
 
 @connect(
-    state => ({clientWidth: state.auth.clientWidth, navButton: state.auth.navButton, language: state.auth.language, }),
+    state => ({clientWidth: state.auth.clientWidth, navButton: state.auth.navButton, language: state.auth.language,}),
     {getClientWidthFunc, getNavButtonFunc, changeLangFunc})
 class Navigation extends Component {
     static propTypes = {
@@ -63,7 +63,7 @@ class Navigation extends Component {
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
-                            <li><Link to="/about">关于</Link></li>
+                            <li><Link to="/about">团队</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
@@ -76,7 +76,7 @@ class Navigation extends Component {
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
-                            <li><Link to="/about">关于</Link></li>
+                            <li><Link to="/about">团队</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
@@ -96,7 +96,7 @@ class Navigation extends Component {
                                     </div>
                                 </div>
                             </li>
-                            <li><Link to="/about">关于</Link></li>
+                            <li><Link to="/about">团队</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
@@ -121,7 +121,7 @@ class Navigation extends Component {
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">Whitepaper</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">Yellowpaper</a></li>
-                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/about">Team</Link></li>
                             <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
@@ -134,7 +134,7 @@ class Navigation extends Component {
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">Whitepaper</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">Yellowpaper</a></li>
-                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/about">Team</Link></li>
                             <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
@@ -154,7 +154,7 @@ class Navigation extends Component {
                                     </div>
                                 </div>
                             </li>
-                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/about">Team</Link></li>
                             <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
