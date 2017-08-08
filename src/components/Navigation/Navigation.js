@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getClientWidthFunc, getNavButtonFunc, changeLangFunc } from 'redux/modules/auth';
 
 @connect(
-    state => ({clientWidth: state.auth.clientWidth, navButton: state.auth.navButton, language: state.auth.language,}),
+    state => ({clientWidth: state.auth.clientWidth, navButton: state.auth.navButton, language: state.auth.language, }),
     {getClientWidthFunc, getNavButtonFunc, changeLangFunc})
 class Navigation extends Component {
     static propTypes = {

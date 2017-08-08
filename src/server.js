@@ -11,8 +11,8 @@ import ApiClient from './helpers/ApiClient';
 import Html from './helpers/Html';
 import PrettyError from 'pretty-error';
 import http from 'http';
-import https from 'https';
-import fs from 'fs';
+// import https from 'https';
+// import fs from 'fs';
 
 import { match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -21,37 +21,38 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
-const mysite = ('D:/zsunData/myPro/react-redux-universal-hot-example/src/cert/wanchain.org.key'); //key
-const mysiteCrt = ('D:/zsunData/myPro/react-redux-universal-hot-example/src/cert/3bb55a3526ededcc.crt'); //
-const gd1 = ('D:/zsunData/myPro/react-redux-universal-hot-example/src/cert/gd_bundle-g2-g1.crt');
+// const mysite = ('D:/zsunData/myPro/react-redux-universal-hot-example/src/cert/wanchain.org.key'); //key
+// const mysiteCrt = ('D:/zsunData/myPro/react-redux-universal-hot-example/src/cert/3bb55a3526ededcc.crt'); //
+// const gd1 = ('D:/zsunData/myPro/react-redux-universal-hot-example/src/cert/gd_bundle-g2-g1.crt');
 
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
-const httpapp = new Express();
-const httpserver = new http.Server(httpapp);
+// const httpapp = new Express();
+// const httpserver = new http.Server(httpapp);
 
-httpapp.use('*', function(req, res) {
-  console.log("HTTP: " + req.url);
-  return res.redirect("https://" + req.headers["host"] + req.url);
-});
-httpapp.listen(80);
+// httpapp.use('*', function(req, res) {
+//   console.log("HTTP: " + req.url);
+//   return res.redirect("https://" + req.headers["host"] + req.url);
+// });
+// httpapp.listen(80);
 
 const app = new Express();
 
-// const server = new http.Server(app);
-const server = https.createServer({
-  key: fs.readFileSync(mysite),
-  cert: fs.readFileSync(mysiteCrt),
-  ca: [fs.readFileSync(gd1)],
-  requestCert: false,
-  rejectUnauthorized: false
-}, app);
+const server = new http.Server(app);
+// const server = https.createServer({
+//   key: fs.readFileSync(mysite),
+//   cert: fs.readFileSync(mysiteCrt),
+//   ca: [fs.readFileSync(gd1)],
+//   requestCert: false,
+//   rejectUnauthorized: false
+// }, app);
 
 const proxy = httpProxy.createProxyServer({
   target: targetUrl,
   ws: true
 });
+
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
@@ -139,7 +140,7 @@ if (config.port) {
     if (err) {
       console.error(err);
     }
-    console.info('----\n==> �? %s is running, talking to API server on %s.', config.app.title, config.apiPort);
+    console.info('----\n==> ✅  %s is running, talking to API server on %s.', config.app.title, config.apiPort);
     console.info('==> 💻  Open http://%s:%s in a browser to view the app.', config.host, config.port);
   });
 } else {
