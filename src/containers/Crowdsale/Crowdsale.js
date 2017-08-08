@@ -60,7 +60,7 @@ class Crowdsale extends Component {
                     {Number(clientWidth) > 1024 && <img src={crowdNumEn} className={styles.crowdsaleHeaderDivNumPC}/>}
                     {Number(clientWidth) > 1024 &&
                     <div className={styles.crowdsaleHeaderDiv}>
-                        <h2><img src={corwdLogo}/>Tokens Allocation</h2>
+                        <h2><img src={corwdLogo}/>Token Distribution</h2>
                         <p>The total supply of Wancoins is 210 million. The ICO target is to raise 30 million USD equivalent in Ether. <br/>
                             The publicly offered digital tokens will be in the form of Wanchain ERC-20 tokens. <br/>
                             Eventually the online tokens will be equal to the crowd-funding tokens in quantity.<br/>
@@ -71,7 +71,7 @@ class Crowdsale extends Component {
                     {Number(clientWidth) <= 1024 && <img src={crowdNumEn} style={{position: 'relative', top: '-80px', width: '100%'}}/>}
                     {Number(clientWidth) <= 1024 &&
                     <div className={styles.crowdsaleHeaderDiv}>
-                        <h2><img src={corwdLogo}/>Tokens Allocation</h2>
+                        <h2><img src={corwdLogo}/>Token Distribution</h2>
                         <p style={{fontSize: '15px'}}>The total supply of Wancoins is 210 million.
                             The ICO target is to raise 30 million USD equivalent in Ether.
                             The publicly offered digital tokens will be in the form of Wanchain ERC-20 tokens.

@@ -132,7 +132,6 @@ export default class Home extends Component {
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">团队</Link></li>
-                            <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
                     }
@@ -145,7 +144,6 @@ export default class Home extends Component {
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">团队</Link></li>
-                            <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
                     }
@@ -165,7 +163,6 @@ export default class Home extends Component {
                                 </div>
                             </li>
                             <li><Link to="/about">团队</Link></li>
-                            <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
                     }
@@ -219,7 +216,6 @@ export default class Home extends Component {
                             <li><a href="/files/Wanchain-Whitepaper-EN-version.pdf" target="_blank">Whitepaper</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-EN-version.pdf" target="_blank">Yellowpaper</a></li>
                             <li><Link to="/about">Team</Link></li>
-                            <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
                     }
@@ -232,7 +228,6 @@ export default class Home extends Component {
                             <li><a href="/files/Wanchain-Whitepaper-EN-version.pdf" target="_blank">Whitepaper</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-EN-version.pdf" target="_blank">Yellowpaper</a></li>
                             <li><Link to="/about">Team</Link></li>
-                            <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
                     }
@@ -252,7 +247,6 @@ export default class Home extends Component {
                                 </div>
                             </li>
                             <li><Link to="/about">Team</Link></li>
-                            <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
                     }

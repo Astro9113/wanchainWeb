@@ -16,7 +16,7 @@ class Navigation extends Component {
       navButton: PropTypes.bool,
       getNavButtonFunc: PropTypes.func,
       changeLangFunc: PropTypes.func,
-      language: PropTypes.func,
+      language: PropTypes.string,
     };
 
     componentDidMount() {
@@ -64,7 +64,6 @@ class Navigation extends Component {
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">团队</Link></li>
-                            <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
                     }
@@ -77,7 +76,6 @@ class Navigation extends Component {
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">团队</Link></li>
-                            <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
                     }
@@ -97,7 +95,6 @@ class Navigation extends Component {
                                 </div>
                             </li>
                             <li><Link to="/about">团队</Link></li>
-                            <li><Link to="/">博客</Link></li>
                         </ul>
                     </div>
                     }
@@ -122,7 +119,6 @@ class Navigation extends Component {
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">Whitepaper</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">Yellowpaper</a></li>
                             <li><Link to="/about">Team</Link></li>
-                            <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
                     }
@@ -135,7 +131,6 @@ class Navigation extends Component {
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">Whitepaper</a></li>
                             <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">Yellowpaper</a></li>
                             <li><Link to="/about">Team</Link></li>
-                            <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
                     }
@@ -155,7 +150,6 @@ class Navigation extends Component {
                                 </div>
                             </li>
                             <li><Link to="/about">Team</Link></li>
-                            <li><Link to="/">Blog</Link></li>
                         </ul>
                     </div>
                     }

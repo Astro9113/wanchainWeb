@@ -26,6 +26,10 @@ import getRoutes from './routes';
 // const gd1 = ('D:/zsunData/myPro/react-redux-universal-hot-example/src/cert/gd_bundle-g2-g1.crt');
 
 
+// const mysite = ('/root/wanchainWeb/src/cert/wanchain.org.key'); //key
+// const mysiteCrt = ('/root/wanchainWeb/src/cert/3bb55a3526ededcc.crt'); //
+// const gd1 = ('/root/wanchainWeb/src/cert/gd_bundle-g2-g1.crt');
+
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
 // const httpapp = new Express();
