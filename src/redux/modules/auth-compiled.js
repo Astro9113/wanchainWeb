@@ -17,6 +17,7 @@ exports.getUserFunc = getUserFunc;
 exports.getClientWidthFunc = getClientWidthFunc;
 exports.getNavButtonFunc = getNavButtonFunc;
 exports.changeLangFunc = changeLangFunc;
+exports.insertSubscribeFunc = insertSubscribeFunc;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37,6 +38,10 @@ var USERS_FAIL = 'redux-example/auth/LOGOUT_FAIL';
 var CLIENT_WIDTH = 'redux-example/auth/CLIENT_WIDTH';
 var HOME_NAV = 'redux-example/auth/HOME_NAV';
 var HOME_LANG = 'redux-example/auth/HOME_LANG';
+
+var SUBSCRIBE = 'redux-example/auth/SUBSCRIBE';
+var SUBSCRIBE_SUCCESS = 'redux-example/auth/SUBSCRIBE_SUCCESS';
+var SUBSCRIBE_FAIL = 'redux-example/auth/SUBSCRIBE_FAIL';
 
 var initialState = {
   loaded: false,
@@ -107,6 +112,14 @@ function reducer() {
         language: action.reload
       });
 
+    case SUBSCRIBE_SUCCESS:
+      setTimeout(function () {
+        global.dataFeedback.emit('onSubscribeComplete');
+      }, 50);
+      return (0, _extends3.default)({}, state, {
+        subscribeState: action.result
+      });
+
     default:
       return state;
   }
@@ -174,6 +187,17 @@ function changeLangFunc(active) {
   return {
     type: HOME_LANG,
     reload: active
+  };
+}
+
+function insertSubscribeFunc(data) {
+  return {
+    types: [SUBSCRIBE, SUBSCRIBE_SUCCESS, SUBSCRIBE_FAIL],
+    promise: function promise(client) {
+      return client.post('/subscribe', {
+        data: data
+      });
+    }
   };
 }
 

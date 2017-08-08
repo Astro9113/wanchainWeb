@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getClientWidthFunc, getNavButtonFunc, changeLangFunc } from 'redux/modules/auth';
 
 @connect(
-    state => ({clientWidth: state.auth.clientWidth, navButton: state.auth.navButton}),
+    state => ({clientWidth: state.auth.clientWidth, navButton: state.auth.navButton, language: state.auth.language, }),
     {getClientWidthFunc, getNavButtonFunc, changeLangFunc})
 class Navigation extends Component {
     static propTypes = {
@@ -16,6 +16,7 @@ class Navigation extends Component {
       navButton: PropTypes.bool,
       getNavButtonFunc: PropTypes.func,
       changeLangFunc: PropTypes.func,
+      language: PropTypes.func,
     };
 
     componentDidMount() {
@@ -37,7 +38,7 @@ class Navigation extends Component {
     }
 
     render() {
-      // const {language} = this.props;
+      const {language} = this.props;
       const styles = require('./Navigation.scss');
 
       const logo = require('./image/logo2.png');
@@ -51,6 +52,7 @@ class Navigation extends Component {
 
       return (
             <div className={styles.navRoot}>
+                {language === 'zn' &&
                 <div className={styles.navHeader + ' container'}>
                     <IndexLink to="/"><img src={logo} /></IndexLink>
                     <img src={nav} className={styles.navbarImg} id="homeNav" onClick={this.getNav.bind(this)}/>
@@ -60,6 +62,7 @@ class Navigation extends Component {
                             <li><IndexLink to="/">首页</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
+                            <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">关于</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
@@ -72,6 +75,7 @@ class Navigation extends Component {
                             <li><IndexLink to="/">首页</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
+                            <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">关于</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
@@ -83,7 +87,15 @@ class Navigation extends Component {
                         <ul>
                             <li><IndexLink to="/">首页</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
-                            <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
+                            <li>
+                                <div className={styles.navDropdown}>
+                                    <a>文档</a>
+                                    <div className={styles['navDropdown-content']}>
+                                        <a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a>
+                                        <a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a>
+                                    </div>
+                                </div>
+                            </li>
                             <li><Link to="/about">关于</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
@@ -96,28 +108,69 @@ class Navigation extends Component {
                         <a onClick={() => {this.onChangeEn();}}>English</a>
                     </div>
                 </div>
+                }
+
+                {language === 'en' &&
+                <div className={styles.navHeader + ' container'}>
+                    <IndexLink to="/"><img src={logo} /></IndexLink>
+                    <img src={nav} className={styles.navbarImg} id="homeNav" onClick={this.getNav.bind(this)}/>
+                    {!navButton && clientWidth <= 1024 &&
+                    <div className={styles.navHeaderUl} id="navbar-menu" style={style}>
+                        <ul>
+                            <li><IndexLink to="/">Home</IndexLink></li>
+                            <li><Link to="/crowdsale">ICO</Link></li>
+                            <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">Whitepaper</a></li>
+                            <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">Yellowpaper</a></li>
+                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/">Blog</Link></li>
+                        </ul>
+                    </div>
+                    }
+
+                    {navButton && clientWidth <= 1024 &&
+                    <div className={styles.navHeaderUl} id="navbar-menu" style={style1}>
+                        <ul>
+                            <li><IndexLink to="/">Home</IndexLink></li>
+                            <li><Link to="/crowdsale">ICO</Link></li>
+                            <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">Whitepaper</a></li>
+                            <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">Yellowpaper</a></li>
+                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/">Blog</Link></li>
+                        </ul>
+                    </div>
+                    }
+
+                    {!navButton && clientWidth >= 1024 &&
+                    <div className={styles.navHeaderUl} id="navbar-menu" style={style1}>
+                        <ul>
+                            <li><IndexLink to="/">Home</IndexLink></li>
+                            <li><Link to="/crowdsale">ICO</Link></li>
+                            <li>
+                                <div className={styles.navDropdown}>
+                                    <a>Files</a>
+                                    <div className={styles['navDropdown-content']}>
+                                        <a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">Whitepaper</a>
+                                        <a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">Yellowpaper</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/">Blog</Link></li>
+                        </ul>
+                    </div>
+                    }
+
+                    <div className={styles.navGit}>
+                        <a href="https://github.com/wanchain" target="_blank"><img src={github} /></a>
+                        <a onClick={() => {this.onChangeZn();}}>中文</a>{' | '}
+                        <a onClick={() => {this.onChangeEn();}}>English</a>
+                    </div>
+                </div>
+                }
+
             </div>
         );
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         changeLanguage: (step) => {
-//             dispatch(changeLanguage(step));
-//         },
-//         login: () => {
-//             dispatch(login());
-//         },
-//         users: () => {
-//             dispatch(users());
-//         },
-//     };
-// };
-//
-// const mapStateToProps = (state) => ({
-//     language : state.lang.language,
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
 export default Navigation;

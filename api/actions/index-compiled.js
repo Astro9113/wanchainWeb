@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.survey = exports.widget = exports.logout = exports.login = exports.loadAuth = exports.loadInfo = undefined;
+exports.subscribe = exports.users = exports.survey = exports.widget = exports.logout = exports.login = exports.loadAuth = exports.loadInfo = undefined;
 
 var _loadInfo2 = require('./loadInfo');
 
@@ -29,6 +29,14 @@ var _index2 = require('./survey/index');
 
 var _survey = _interopRequireWildcard(_index2);
 
+var _users2 = require('./users/users');
+
+var _users3 = _interopRequireDefault(_users2);
+
+var _subscribe2 = require('./subscribe/subscribe');
+
+var _subscribe3 = _interopRequireDefault(_subscribe2);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -39,7 +47,7 @@ exports.login = _login3.default;
 exports.logout = _logout3.default;
 exports.widget = _widget;
 exports.survey = _survey;
-
-// export users from './users/users';
+exports.users = _users3.default;
+exports.subscribe = _subscribe3.default;
 
 //# sourceMappingURL=index-compiled.js.map

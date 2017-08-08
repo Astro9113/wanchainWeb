@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { getNavButtonFunc } from 'redux/modules/auth';
+
 import Div1 from './components/div/Div1';
 import Div1En from './components/div/Div1En';
 
@@ -12,12 +14,19 @@ import Div4 from './components/div/Div4';
 
 @connect(
     state => ({clientWidth: state.auth.clientWidth, navButton: state.auth.navButton, language: state.auth.language, }),
+    {getNavButtonFunc}
     )
 class Crowdsale extends Component {
     static propTypes = {
       language: PropTypes.string,
       clientWidth: PropTypes.number,
+
+      getNavButtonFunc: PropTypes.func,
     };
+
+    componentWillUnmount() {
+      this.props.getNavButtonFunc(false);
+    }
 
     render() {
       const {language, clientWidth} = this.props;

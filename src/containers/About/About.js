@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { getNavButtonFunc } from 'redux/modules/auth';
 
 import teamData from './data/dataTeam';
 import teamDataEn from './data/dataTeamEn';
@@ -10,12 +11,17 @@ import dataAdvisoryEn from './data/dataAdvisoryEn';
 
 @connect(
     state => ({language: state.auth.language, }),
+    {getNavButtonFunc}
 )
 class About extends Component {
     static propTypes = {
       language: PropTypes.string,
+      getNavButtonFunc: PropTypes.func,
     };
 
+    componentWillUnmount() {
+      this.props.getNavButtonFunc(false);
+    }
     render() {
       const {language} = this.props;
       const blog1 = require('./image/blog1.png');

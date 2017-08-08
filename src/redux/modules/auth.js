@@ -16,6 +16,10 @@ const CLIENT_WIDTH = 'redux-example/auth/CLIENT_WIDTH';
 const HOME_NAV = 'redux-example/auth/HOME_NAV';
 const HOME_LANG = 'redux-example/auth/HOME_LANG';
 
+const SUBSCRIBE = 'redux-example/auth/SUBSCRIBE';
+const SUBSCRIBE_SUCCESS = 'redux-example/auth/SUBSCRIBE_SUCCESS';
+const SUBSCRIBE_FAIL = 'redux-example/auth/SUBSCRIBE_FAIL';
+
 const initialState = {
   loaded: false,
   navButton: false,
@@ -94,6 +98,15 @@ export default function reducer(state = initialState, action = {}) {
         language: action.reload,
       };
 
+    case SUBSCRIBE_SUCCESS:
+      setTimeout(()=>{
+        global.dataFeedback.emit('onSubscribeComplete');
+      }, 50);
+      return {
+        ...state,
+        subscribeState: action.result,
+      };
+
     default:
       return state;
   }
@@ -154,5 +167,14 @@ export function changeLangFunc(active) {
   return {
     type: HOME_LANG,
     reload: active
+  };
+}
+
+export function insertSubscribeFunc(data) {
+  return {
+    types: [SUBSCRIBE, SUBSCRIBE_SUCCESS, SUBSCRIBE_FAIL],
+    promise: (client) => client.post('/subscribe', {
+      data: data,
+    })
   };
 }

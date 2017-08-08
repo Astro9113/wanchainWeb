@@ -12,6 +12,7 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
+import {EventEmitter} from 'events';
 
 import getRoutes from './routes';
 
@@ -35,6 +36,7 @@ function initSocket() {
 }
 
 global.socket = initSocket();
+global.dataFeedback = new EventEmitter();
 
 const component = (
   <Router render={(props) =>

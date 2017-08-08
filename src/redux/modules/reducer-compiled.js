@@ -20,6 +20,10 @@ var _auth = require('./auth');
 
 var _auth2 = _interopRequireDefault(_auth);
 
+var _warning = require('./warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
 var _counter = require('./counter');
 
 var _counter2 = _interopRequireDefault(_counter);
@@ -40,6 +44,7 @@ exports.default = (0, _redux.combineReducers)({
   routing: _reactRouterRedux.routerReducer,
   reduxAsyncConnect: _reduxAsyncConnect.reducer,
   auth: _auth2.default,
+  warning: _warning2.default,
   form: _reduxForm.reducer,
   multireducer: (0, _multireducer2.default)({
     counter1: _counter2.default,

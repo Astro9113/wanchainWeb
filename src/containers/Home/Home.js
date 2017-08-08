@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getClientWidthFunc, getNavButtonFunc, changeLangFunc } from 'redux/modules/auth';
 
 import currentDate from './utils/currentDate';
-import getLange from './utils/getLange';
+// import getLange from './utils/getLange';
 
 import Div1 from './components/Div1/Div1';
 import Div2 from './components/Div2/Div2';
@@ -44,15 +44,16 @@ export default class Home extends Component {
       const width = document.documentElement.clientWidth;
       this.props.getClientWidthFunc(width);
 
-      const curr = getLange();
-
-      if (curr !== 'zh-CN') {
-        this.props.changeLangFunc('en');
-      }
+      // const curr = getLange();
+      //
+      // if (curr !== 'zh-CN') {
+      //   this.props.changeLangFunc('en');
+      // }
     }
 
     componentWillUnmount() {
       clearInterval(this.interval);
+      this.props.getNavButtonFunc(false);
     }
 
     onChangeEn() {
@@ -129,6 +130,7 @@ export default class Home extends Component {
                             <li><IndexLink to="/">首页</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
+                            <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">关于</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
@@ -141,6 +143,7 @@ export default class Home extends Component {
                             <li><IndexLink to="/">首页</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
+                            <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">关于</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
@@ -152,7 +155,15 @@ export default class Home extends Component {
                         <ul>
                             <li><IndexLink to="/">首页</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
-                            <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
+                            <li>
+                                <div className={styles.homeDropdown}>
+                                    <a>文档</a>
+                                    <div className={styles['homeDropdown-content']}>
+                                        <a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a>
+                                        <a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a>
+                                    </div>
+                                </div>
+                            </li>
                             <li><Link to="/about">关于</Link></li>
                             <li><Link to="/">博客</Link></li>
                         </ul>
@@ -206,6 +217,7 @@ export default class Home extends Component {
                             <li><IndexLink to="/">Home</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-EN-version.pdf" target="_blank">Whitepaper</a></li>
+                            <li><a href="/files/Wanchain-Yellowpaper-EN-version.pdf" target="_blank">Yellowpaper</a></li>
                             <li><Link to="/about">About</Link></li>
                             <li><Link to="/">Blog</Link></li>
                         </ul>
@@ -218,6 +230,7 @@ export default class Home extends Component {
                             <li><IndexLink to="/">Home</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-EN-version.pdf" target="_blank">Whitepaper</a></li>
+                            <li><a href="/files/Wanchain-Yellowpaper-EN-version.pdf" target="_blank">Yellowpaper</a></li>
                             <li><Link to="/about">About</Link></li>
                             <li><Link to="/">Blog</Link></li>
                         </ul>
@@ -229,7 +242,15 @@ export default class Home extends Component {
                         <ul>
                             <li><IndexLink to="/">Home</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
-                            <li><a href="/files/Wanchain-Whitepaper-EN-version.pdf" target="_blank">Whitepaper</a></li>
+                            <li>
+                                <div className={styles.homeDropdown}>
+                                    <a>Files</a>
+                                    <div className={styles['homeDropdown-content']}>
+                                        <a href="/files/Wanchain-Whitepaper-EN-version.pdf" target="_blank">Whitepaper</a>
+                                        <a href="/files/Wanchain-Yellowpaper-EN-version.pdf" target="_blank">Yellowpaper</a>
+                                    </div>
+                                </div>
+                            </li>
                             <li><Link to="/about">About</Link></li>
                             <li><Link to="/">Blog</Link></li>
                         </ul>

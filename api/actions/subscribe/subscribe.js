@@ -1,6 +1,7 @@
 var mysql  = require('mysql');
 
 import mysqlConfig from '../../mysql/mysql.config';
+import Date from '../../utils/Date';
 
 var connection = mysql.createConnection({
     host     : mysqlConfig.host,
@@ -13,18 +14,23 @@ var connection = mysql.createConnection({
 export default function users(req) {
     connection.connect();
 
-    var  userGetSql = 'SELECT * FROM users';
+    var email = req.body.email; //bodyParser does the magic
+    var create_time = new Date().Format("yyyy-MM-dd hh:mm:ss");
+
+    var insertSubscribeSql = 'INSERT INTO wanchain_subscribes(email, create_time) VALUE(?, ?)';
+    var insertSubscrbeParams = [email, create_time];
+
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             //查 query
-            connection.query(userGetSql,function (err, result) {
+            connection.query(insertSubscribeSql, insertSubscrbeParams,function (err, result) {
                 if(err){
-                    reject(errors);
+                    reject({errors: err.message, status: 0});
                     console.log('[SELECT ERROR] - ',err.message);
                 }
 
-                console.log('---------------SELECT----------------');
-                resolve(result);
+                console.log('---------------INSERT----------------');
+                resolve({result: 'insert success', status: 1});
                 console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
             });
 
@@ -32,4 +38,3 @@ export default function users(req) {
         }, 1000);
     });
 }
-

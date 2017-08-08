@@ -1,33 +1,35 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 
-// import WarningModal from '../../../container/Warn';
-// import { subscribe } from '../../../store/home';
-// import { warningOpenFunc, warningCloseFunc, warningMsgFunc} from '../../../store/warning';
+import WarningModal from '../../components/Warn';
+import { warningOpenFunc, warningCloseFunc, warningMsgFunc} from 'redux/modules/warning';
 
-// import emailCheck from './utils/emailCheck';
+import emailCheck from './utils/emailCheck';
 
+import { insertSubscribeFunc } from 'redux/modules/auth';
 @connect(
-    state => ({clientWidth: state.auth.clientWidth, }),
+    state => ({clientWidth: state.auth.clientWidth, language: state.auth.language, subscribeState: state.auth.subscribeState,
+        warningModal: state.warning.warningModal, warningMsg: state.warning.warningMsg, }),
+    {insertSubscribeFunc, warningOpenFunc, warningCloseFunc, warningMsgFunc}
     )
 class Footer extends React.Component {
 
     static propTypes = {
-      // language: PropTypes.string,
-      // subscribe: PropTypes.func,
-      // subscribeState: PropTypes.object,
+      language: PropTypes.string,
+      insertSubscribeFunc: PropTypes.func,
+      subscribeState: PropTypes.object,
       clientWidth: PropTypes.number,
 
-      // warningOpenFunc: PropTypes.func,
-      // warningCloseFunc: PropTypes.func,
-      // warningMsgFunc: PropTypes.func,
-      // warningModal: PropTypes.bool,
-      // warningMsg: PropTypes.string,
+      warningOpenFunc: PropTypes.func,
+      warningCloseFunc: PropTypes.func,
+      warningMsgFunc: PropTypes.func,
+      warningModal: PropTypes.bool,
+      warningMsg: PropTypes.string,
     };
 
-    // componentWillMount() {
-    //     this.props.warningCloseFunc();
-    // }
+    componentWillMount() {
+      this.props.warningCloseFunc();
+    }
 
     onSubmit = () => {
       document.getElementById('wechat').style.position = 'absolute';
@@ -57,45 +59,51 @@ class Footer extends React.Component {
     };
 
     // onClick = () => {
-    //     const {wanchain_subscribe} = this.refs;
-    //
-    //     let msg;
-    //     if (emailCheck(wanchain_subscribe.value)) {
-    //         const data = {email: wanchain_subscribe.value};
-    //         this.props.subscribe(data);
-    //
-    //         wanchain_subscribe.value = '';
-    //
-    //         const self = this;
-    //         global.dataFeedback.once('onSubscribeComplete', () => {
-    //             if (self.props.subscribeState && self.props.subscribeState.message === 'Subscribe created!') {
-    //                 if (self.props.language === 'zn') {msg = '订阅成功，请注意查收邮箱'} else {msg= 'Success! Please check the mailbox'}
-    //                 self.props.warningMsgFunc(msg);
-    //             } else if (self.props.subscribeState && self.props.subscribeState.errors && self.props.subscribeState.errors[0].message === 'email must be unique') {
-    //                 if (self.props.language === 'zn') {msg = '您已订阅成功，无需重复订阅'} else {msg= 'You have subscribed successfully, Not need subscribe again'}
-    //                 self.props.warningMsgFunc(msg);
-    //             } else { if (self.props.language === 'zn') {msg = '订阅失败，请稍后再试'} else {msg= 'Failed! Please try again later'}
-    //                 self.props.warningMsgFunc(msg);
-    //             }
-    //             self.props.warningOpenFunc();
-    //         });
-    //     } else {
-    //         if (this.props.language === 'zn') {msg = '电子邮件地址必须包括 ( @ 和 . )'} else {msg= 'E-mail addresses must include (@ and .)'}
-    //         this.props.warningMsgFunc(msg);
-    //         this.props.warningOpenFunc();
-    //     }
+    //   const {wanchain_subscribe} = this.refs;
+    //   const data = {email: wanchain_subscribe.value};
+    //   this.props.insertSubscribeFunc(data);
     // };
 
-    // showWarn = () => {
-    //     this.props.warningOpenFunc();
-    // };
-    // closeWarn = () => {
-    //     this.props.warningMsgFunc('');
-    //     this.props.warningCloseFunc();
-    // };
+    onClick = () => {
+      const {wanchain_subscribe} = this.refs;
+
+      let msg;
+      if (emailCheck(wanchain_subscribe.value)) {
+        const data = {email: wanchain_subscribe.value};
+        this.props.insertSubscribeFunc(data);
+
+        wanchain_subscribe.value = '';
+
+        const self = this;
+        global.dataFeedback.once('onSubscribeComplete', () => {
+          console.log(self.props.subscribeState);
+          console.log(self.props.subscribeState.status);
+          if (self.props.subscribeState && self.props.subscribeState.status === 1) {
+            if (self.props.language === 'zn') {msg = '订阅成功，请注意查收邮箱';} else {msg = 'Success! Please check the mailbox';}
+            self.props.warningMsgFunc(msg);
+          } else {
+            if (self.props.language === 'zn') { msg = '订阅失败，请稍后再试';} else {msg = 'Failed! Please try again later';}
+            self.props.warningMsgFunc(msg);
+          }
+          self.props.warningOpenFunc();
+        });
+      } else {
+        if (this.props.language === 'zn') {msg = '电子邮件地址必须包括 ( @ 和 . )';} else {msg = 'E-mail addresses must include (@ and .)';}
+        this.props.warningMsgFunc(msg);
+        this.props.warningOpenFunc();
+      }
+    };
+
+    showWarn = () => {
+      this.props.warningOpenFunc();
+    };
+    closeWarn = () => {
+      this.props.warningMsgFunc('');
+      this.props.warningCloseFunc();
+    };
 
     render() {
-      // const {language} = this.props;
+      const {language, warningModal} = this.props;
 
       const styles = require('./Footer.scss');
       const email = require('./image/email.png');
@@ -113,14 +121,29 @@ class Footer extends React.Component {
       return (
             <div className={styles.FooterRoot}>
                 <div className={styles.FooterContainer + ' container'}>
+                    {language === 'zn' &&
                     <div className={styles.FooterformGroup + ' form-group col-lg-4'}>
                         <img src={email}/>
-                        <input type="text" className="form-control" id="name" ref="wanchain_subscribe" placeholder="Please enter the email address" disabled="disabled"/>
+                        <input type="text" className="form-control" id="name" ref="wanchain_subscribe" placeholder="Please enter the email address" />
                         <div className={styles['submit-area']}>
-                            <a className={styles['submit-button'] + ' btn'} data-toggle="modal" data-target=".bs-example-modal-lg">{' + '}订阅</a>
+                            <a className={styles['submit-button'] + ' btn'} data-toggle="modal" data-target=".bs-example-modal-lg"
+                               onClick={this.onClick.bind(this)}>{' + '}订阅</a>
                         </div>
                         <p>更多项目请咨询：<span>info@wanchain.org</span></p>
                     </div>
+                    }
+
+                    {language === 'en' &&
+                    <div className={styles.FooterformGroup + ' form-group col-lg-4'}>
+                        <img src={email}/>
+                        <input type="text" className="form-control" id="name" ref="wanchain_subscribe" placeholder="Please enter the email address" />
+                        <div className={styles['submit-area']}>
+                            <a className={styles['submit-button'] + ' btn'} data-toggle="modal" data-target=".bs-example-modal-lg"
+                               onClick={this.onClick.bind(this)}>{' + '}Subscribe</a>
+                        </div>
+                        <p>for more information, please contact: <span>info@wanchain.org</span></p>
+                    </div>
+                    }
 
                     <div className={styles.formGroupDiv + ' form-group col-lg-4'}>
                         <img src={wecater} className={styles.wechat} id="wechat"/>
@@ -133,7 +156,11 @@ class Footer extends React.Component {
                         <a onClick={this.onQQ.bind(this)} onMouseOver={this.onQQ.bind(this)} onMouseLeave={this.onQQLeave.bind(this)}><img src={qq1}/></a>
                     </div>
                 </div>
-                <div className={styles.FooterEnd}><span>©wanchain 2017 版权所有 all rights reserved</span></div>
+                <div className={styles.FooterEnd}>
+                    { language === 'zn' && <span>©wanchain 2017 版权所有 all rights reserved</span>}
+                    { language === 'en' && <span>©WANCHAIN FOUNDATION LTD 2017 all rights reserved</span>}
+                </div>
+                <WarningModal show={warningModal} onHide={this.showWarn.bind(this)} onClose={this.closeWarn.bind(this)} message={this.props.warningMsg}/>
             </div>
       );
     }
@@ -141,4 +168,3 @@ class Footer extends React.Component {
 
 export default Footer;
 
-// <WarningModal show={this.props.warningModal} onHide={this.showWarn} onClose={this.closeWarn} message={this.props.warningMsg}/>

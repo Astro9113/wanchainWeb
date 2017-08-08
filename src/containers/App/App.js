@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 // import { IndexLink } from 'react-router';
 import Helmet from 'react-helmet';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
-import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
+import { isLoaded as isAuthLoaded, load as loadAuth, logout, changeLangFunc } from 'redux/modules/auth';
 // import { logout } from 'redux/modules/auth';
 import { Navigation, Footer } from 'components';
 import { push } from 'react-router-redux';
 // import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
+
+import getLange from '../Home/utils/getLange';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -27,13 +29,14 @@ import { asyncConnect } from 'redux-async-connect';
 
 @connect(
     state => ({user: state.auth.user, transition: state.routing.locationBeforeTransitions, language: state.auth.language, }),
-    {logout, pushState: push})
+    {logout, pushState: push, changeLangFunc})
 class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     user: PropTypes.object,
     logout: PropTypes.func.isRequired,
     language: PropTypes.string,
+    changeLangFunc: PropTypes.func,
 
     transition: PropTypes.object,
     pushState: PropTypes.func.isRequired
@@ -42,6 +45,14 @@ class App extends Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
+
+  componentDidMount() {
+    const curr = getLange();
+
+    if (curr !== 'zh-CN') {
+      this.props.changeLangFunc('en');
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {

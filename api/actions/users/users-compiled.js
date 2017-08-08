@@ -10,16 +10,20 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = users;
 
+var _mysql = require('../../mysql/mysql.config');
+
+var _mysql2 = _interopRequireDefault(_mysql);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: '***',
-    password: '***',
-    port: '3306',
-    database: '***'
+    host: _mysql2.default.host,
+    user: _mysql2.default.user,
+    password: _mysql2.default.password,
+    port: _mysql2.default.port,
+    database: _mysql2.default.database
 });
 
 function users(req) {
@@ -36,7 +40,6 @@ function users(req) {
                 }
 
                 console.log('---------------SELECT----------------');
-                console.log(result);
                 resolve(result);
                 console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
             });
