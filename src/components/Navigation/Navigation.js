@@ -142,7 +142,7 @@ class Navigation extends Component {
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li>
                                 <div className={styles.navDropdown}>
-                                    <a>Files</a>
+                                    <a>Docs</a>
                                     <div className={styles['navDropdown-content']}>
                                         <a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">Whitepaper</a>
                                         <a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">Yellowpaper</a>

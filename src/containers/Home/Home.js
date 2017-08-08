@@ -130,7 +130,7 @@ export default class Home extends Component {
                             <li><IndexLink to="/">首页</IndexLink></li>
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li><a href="/files/Wanchain-Whitepaper-CH-version.pdf" target="_blank">白皮书</a></li>
-                            <li><a href="/files/Wanchain-Yellowpaper-CH-version.pdf" target="_blank">黄皮书</a></li>
+                            <li><a href="/files/Wanchain-l-CH-version.pdf" target="_blank">黄皮书</a></li>
                             <li><Link to="/about">团队</Link></li>
                         </ul>
                     </div>
@@ -192,7 +192,7 @@ export default class Home extends Component {
                             <li><span >{this.state.date.days}</span><small>:</small><p>{this.state.date.ref_days}</p></li>
                             <li><span >{this.state.date.hours}</span><small>:</small><p>{this.state.date.ref_hours}</p></li>
                             <li><span >{this.state.date.minutes}</span><small>:</small><p>{this.state.date.ref_minutes}</p></li>
-                            <li><span>{this.state.date.seconds}</span><small style={{display: 'none'}}>:</small><p>{this.state.date.ref_seconds}</p></li>
+                            <li><span>{this.state.date.seconds}</span><small style={{opacity: 0}}>:</small><p>{this.state.date.ref_seconds}</p></li>
                         </ul>
                     </div>
                     <div className={styles.homeHeaderBodyDiv2}>
@@ -239,7 +239,7 @@ export default class Home extends Component {
                             <li><Link to="/crowdsale">ICO</Link></li>
                             <li>
                                 <div className={styles.homeDropdown}>
-                                    <a>Files</a>
+                                    <a>Docs</a>
                                     <div className={styles['homeDropdown-content']}>
                                         <a href="/files/Wanchain-Whitepaper-EN-version.pdf" target="_blank">Whitepaper</a>
                                         <a href="/files/Wanchain-Yellowpaper-EN-version.pdf" target="_blank">Yellowpaper</a>
@@ -283,7 +283,7 @@ export default class Home extends Component {
                             <li><span >{this.state.date.days}</span><small>:</small><p>{this.state.date.ref_days}</p></li>
                             <li><span >{this.state.date.hours}</span><small>:</small><p>{this.state.date.ref_hours}</p></li>
                             <li><span >{this.state.date.minutes}</span><small>:</small><p>{this.state.date.ref_minutes}</p></li>
-                            <li><span>{this.state.date.seconds}</span><small style={{display: 'none'}}>:</small><p>{this.state.date.ref_seconds}</p></li>
+                            <li><span>{this.state.date.seconds}</span><small style={{opacity: 0}}>:</small><p>{this.state.date.ref_seconds}</p></li>
                         </ul>
                     </div>
                     <div className={styles.homeHeaderBodyDiv2}>
